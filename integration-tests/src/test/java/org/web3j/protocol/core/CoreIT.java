@@ -1,7 +1,9 @@
 package org.web3j.protocol.core;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -69,7 +71,41 @@ public class CoreIT {
 
     @Before
     public void setUp() {
-        this.web3j = Web3j.build(new HttpService());
+        this.web3j = Web3j.build(new HttpService("https://kovan.infura.io/metamask"));
+    }
+
+    @Test
+    public void testBatchRequest() throws Exception {
+
+        BatchRequest batch = web3j.newBatch();
+
+        Request<?, Web3ClientVersion> clientVersion = web3j.web3ClientVersion();
+        batch.add(clientVersion);
+
+        Request<?, EthBlockNumber> ethBlockNumber = web3j.ethBlockNumber();
+        batch.add(ethBlockNumber);
+
+        Request<?, EthBlock> ethBlock = web3j.ethGetBlockByNumber(DefaultBlockParameter.valueOf(BigInteger.valueOf(1000L)),
+                false);
+        batch.add(ethBlock);
+
+        Optional<BatchResponse> optional_response = batch.execute();
+        assertTrue(optional_response.isPresent());
+        BatchResponse response = optional_response.get();
+
+        Optional<Web3ClientVersion> optional_a = response.get(clientVersion);
+        assertTrue(optional_a.isPresent());
+        Web3ClientVersion a = optional_a.get();
+
+        Optional<EthBlockNumber> optional_b = response.get(ethBlockNumber);
+        assertTrue(optional_b.isPresent());
+        EthBlockNumber b = optional_b.get();
+
+        Optional<EthBlock> optional_c = response.get(ethBlock);
+        assertTrue(optional_c.isPresent());
+        EthBlock c = optional_c.get();
+
+        System.out.println("Test done!");
     }
 
     @Test

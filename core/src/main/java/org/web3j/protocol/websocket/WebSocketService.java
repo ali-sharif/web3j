@@ -7,7 +7,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
@@ -22,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.web3j.protocol.core.BatchResponse;
 import rx.Observable;
 import rx.subjects.BehaviorSubject;
 
@@ -164,6 +167,10 @@ public class WebSocketService implements Web3jService {
         log.debug("Sending request: {}", payload);
         webSocketClient.send(payload);
         setRequestTimeout(requestId);
+    }
+
+    public Optional<BatchResponse> sendBatch(List<Request<?, ? extends Response<?>>> requests) throws IOException {
+        throw new UnsupportedOperationException();
     }
 
     private void setRequestTimeout(long requestId) {

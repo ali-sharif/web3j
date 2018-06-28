@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import rx.Observable;
 
 import org.web3j.protocol.Web3jService;
@@ -21,6 +22,7 @@ public class Request<S, T extends Response> {
 
     // Unfortunately require an instance of the type too, see
     // http://stackoverflow.com/a/3437930/3211687
+    @JsonIgnore
     private Class<T> responseType;
 
     public Request() {
@@ -65,6 +67,10 @@ public class Request<S, T extends Response> {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Class<T> getResponseType() {
+        return responseType;
     }
 
     public T send() throws IOException {

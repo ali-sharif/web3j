@@ -98,6 +98,11 @@ public class JsonRpc2_0Web3j implements Web3j {
     }
 
     @Override
+    public BatchRequest newBatch() {
+        return new BatchRequest(web3jService);
+    }
+
+    @Override
     public Request<?, Web3ClientVersion> web3ClientVersion() {
         return new Request<>(
                 "web3_clientVersion",

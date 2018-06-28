@@ -1,8 +1,12 @@
 package org.web3j.protocol;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
+import org.web3j.protocol.core.BatchRequest;
+import org.web3j.protocol.core.BatchResponse;
 import rx.Observable;
 
 import org.web3j.protocol.core.Request;
@@ -13,7 +17,6 @@ import org.web3j.protocol.websocket.events.Notification;
  * Services API.
  */
 public interface Web3jService {
-
     /**
      * Perform a synchronous JSON-RPC request.
      *
@@ -23,8 +26,7 @@ public interface Web3jService {
      * @return deserialized JSON-RPC response
      * @throws IOException thrown if failed to perform a request
      */
-    <T extends Response> T send(
-            Request request, Class<T> responseType) throws IOException;
+    <T extends Response> T send(Request request, Class<T> responseType) throws IOException;
 
     /**
      * Performs an asynchronous JSON-RPC request.
@@ -35,8 +37,7 @@ public interface Web3jService {
      * @return CompletableFuture that will be completed when a result is returned or if a
      *         request has failed
      */
-    <T extends Response> CompletableFuture<T> sendAsync(
-            Request request, Class<T> responseType);
+    <T extends Response> CompletableFuture<T> sendAsync(Request request, Class<T> responseType);
 
     /**
      * Subscribe to a stream of notifications. A stream of notifications is opened by
@@ -67,4 +68,9 @@ public interface Web3jService {
      * @throws IOException thrown if a service failed to close all resources
      */
     void close() throws IOException;
+
+    /**
+     * todo: document this!
+     */
+    Optional<BatchResponse> sendBatch(List<Request<?, ? extends Response<?>>> requests) throws IOException;
 }
