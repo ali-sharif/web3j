@@ -1,11 +1,11 @@
 package org.web3j.protocol.core;
 
 import org.web3j.protocol.Web3jService;
-import rx.Observable;
 
 import java.io.IOException;
-import java.util.*;
-import java.util.concurrent.CompletableFuture;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import static java.util.Collections.unmodifiableList;
 

@@ -1,24 +1,22 @@
 package org.web3j.protocol;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.*;
-import java.util.concurrent.CompletableFuture;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.web3j.protocol.core.BatchRequest;
 import org.web3j.protocol.core.BatchResponse;
-import rx.Observable;
-
 import org.web3j.protocol.core.Request;
 import org.web3j.protocol.core.Response;
 import org.web3j.protocol.websocket.events.Notification;
 import org.web3j.utils.Async;
+import rx.Observable;
 
-import javax.swing.text.html.Option;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Base service implementation.

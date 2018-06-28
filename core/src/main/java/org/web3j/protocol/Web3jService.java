@@ -1,17 +1,15 @@
 package org.web3j.protocol;
 
+import org.web3j.protocol.core.BatchResponse;
+import org.web3j.protocol.core.Request;
+import org.web3j.protocol.core.Response;
+import org.web3j.protocol.websocket.events.Notification;
+import rx.Observable;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-
-import org.web3j.protocol.core.BatchRequest;
-import org.web3j.protocol.core.BatchResponse;
-import rx.Observable;
-
-import org.web3j.protocol.core.Request;
-import org.web3j.protocol.core.Response;
-import org.web3j.protocol.websocket.events.Notification;
 
 /**
  * Services API.

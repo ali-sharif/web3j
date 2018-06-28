@@ -22,7 +22,6 @@ public class Request<S, T extends Response> {
 
     // Unfortunately require an instance of the type too, see
     // http://stackoverflow.com/a/3437930/3211687
-    @JsonIgnore
     private Class<T> responseType;
 
     public Request() {
@@ -69,6 +68,7 @@ public class Request<S, T extends Response> {
         this.id = id;
     }
 
+    @JsonIgnore
     public Class<T> getResponseType() {
         return responseType;
     }
