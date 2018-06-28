@@ -31,30 +31,6 @@ public abstract class Service implements Web3jService {
 
     protected abstract InputStream performIO(String payload) throws IOException;
 
-    /*
-    // Simple implementation
-    public static class BatchRequest {
-        private List<Request<?, ? extends Response<?>>> requests;
-        private Map<Request<?, ? extends Response<?>>, Response<?>> responses;
-
-        public BatchRequest() {
-            requests = new ArrayList<>();
-            responses = new HashMap<>();
-        }
-
-        public void add(Request<?, ? extends Response<?>> request) {
-            requests.add(request);
-        }
-
-        public void addAll(List<Request<?, ? extends Response<?>>> requests) {
-            this.requests.addAll(requests);
-        }
-
-        public <T extends Response<?>> Optional<T> getResponse(Request<?, T> request) {
-            return Optional.ofNullable(request.getResponseType().cast(responses.get(request)));
-        }
-    }*/
-
     public Optional<BatchResponse> sendBatch(List<Request<?, ? extends Response<?>>> requests) throws IOException {
 
         String payload = objectMapper.writeValueAsString(requests);
